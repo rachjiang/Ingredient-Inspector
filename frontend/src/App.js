@@ -1,5 +1,6 @@
-import SearchImage from "./SearchImage";
 import { Container } from 'react-bootstrap';
+
+import SearchImage from './SearchImage';
 
 function App() {
   return (

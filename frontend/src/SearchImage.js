@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { FormControl, Button } from 'react-bootstrap';
 
-export default function SearchImage() {
+export default function Search() {
   // store imageUrl to state:
   const [imageUrl, setImageUrl] = useState("https://media.chefdehome.com/740/0/0/ratatouille/ratatouille-casserole.jpg")
 
@@ -29,4 +29,4 @@ export default function SearchImage() {
       </Button>
       </div>
   )
-}
+};
