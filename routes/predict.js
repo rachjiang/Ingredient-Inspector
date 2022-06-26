@@ -11,14 +11,17 @@ const {ClarifaiStub, grpc} = require("clarifai-nodejs-grpc");
 const stub = ClarifaiStub.grpc();
 // Metadata object is used for authentiation
 const metadata = new grpc.Metadata();
-metadata.set("authorization", 'Key 71c43a614c4f457687ac2483fd815873');
+
+metadata.set("authorization", `Key ${process.env.CLARIFAI_KEY}`);
 
 // npm's clarifai set up instructions provides the code to predict concepts in an image. We'll place this code inside predictImage()
 function predictImage(inputs) {
     return new Promise((resolve, reject) => {
         stub.PostModelOutputs(
             {
-                // This is the model ID of a publicly available General model. You may use any other public or custom model ID.
+
+                // This is the model ID of a publicly available Food model. You may use any other public or custom model ID.
+
                 model_id: "food-item-recognition",
                 // original inputs value from npm was replaced with our inputs argument
                 inputs: inputs
