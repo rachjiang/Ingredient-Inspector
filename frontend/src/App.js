@@ -15,7 +15,8 @@ const [imageToPredict, setImageToPredict] = useState("");
       <Stack gap={2}>
       {/* mt = margin top */}
       <div className="mt-3" />
-      <SearchImage />
+      {/* passing hooks so component can update state for the image submission and send the response object from the server with name and value properties for the table */}
+      <SearchImage setOutput={setOutput} setImageToPredict={setImageToPredict}/>
       <Output output={output} imageToPredict={imageToPredict} />
       </Stack>
     </Container>
