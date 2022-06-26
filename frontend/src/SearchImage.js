@@ -3,19 +3,24 @@ import axios from 'axios';
 
 import { FormControl, Button } from 'react-bootstrap';
 
-export default function Search() {
-  // store imageUrl to state:
-  const [imageUrl, setImageUrl] = useState("https://www.spendwithpennies.com/wp-content/uploads/2020/01/Ratatouille-SWP-9.jpg")
+export default function Search(props) {
+  // store imageUrl to state to update changes:
+  const [imageUrl, setImageUrl] = useState("");
+
+  const {setOutput, setImageToPredict} = props;
 
   const handleChangeImageUrl = (event) => {
     setImageUrl(event.target.value);
   }
 
   const predictImage = () => {
+    // our hook and handleChange will update photo whenever another is uploaded
+    setImageToPredict(imageUrl);
     axios.post('/predict', {
       imageUrl: imageUrl
     }).then(res => {
-      alert(JSON.stringify(res.data))
+      // results is an array with each name and value obj
+      setOutput(res.data.results);
     }).catch(err => {
       alert(err);
     })
@@ -25,7 +30,7 @@ export default function Search() {
     <div>
       <FormControl className="mb-3"
       value={imageUrl}
-      placeholder="Image URL"
+      placeholder="Show us what you're craving here! Paste an image URL"
       aria-label="Image URL"
       onChange={handleChangeImageUrl} />
       <Button variant="primary" onClick={predictImage}>

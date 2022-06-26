@@ -1,12 +1,24 @@
-import { Container } from 'react-bootstrap';
+import { useState } from 'react';
+import { Container, Stack } from 'react-bootstrap';
 
 import SearchImage from './SearchImage';
+import Output from './Output';
 
 function App() {
+  // to render the image, name and probability output, store to state:
+const [output, setOutput] = useState([]);
+const [imageToPredict, setImageToPredict] = useState("");
+
   return (
     <Container>
+      {/* gap spaces the components */}
+      <Stack gap={2}>
+      {/* mt = margin top */}
       <div className="mt-3" />
-      <SearchImage />
+      {/* passing hooks so component can update state for the image submission and send the response object from the server with name and value properties for the table */}
+      <SearchImage setOutput={setOutput} setImageToPredict={setImageToPredict}/>
+      <Output output={output} imageToPredict={imageToPredict} />
+      </Stack>
     </Container>
   );
 }
