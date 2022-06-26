@@ -5,7 +5,7 @@ import { FormControl, Button } from 'react-bootstrap';
 
 export default function Search() {
   // store imageUrl to state:
-  const [imageUrl, setImageUrl] = useState("https://media.chefdehome.com/740/0/0/ratatouille/ratatouille-casserole.jpg")
+  const [imageUrl, setImageUrl] = useState("https://www.spendwithpennies.com/wp-content/uploads/2020/01/Ratatouille-SWP-9.jpg")
 
   const handleChangeImageUrl = (event) => {
     setImageUrl(event.target.value);
@@ -14,19 +14,23 @@ export default function Search() {
   const predictImage = () => {
     axios.post('/predict', {
       imageUrl: imageUrl
-    }).then((res) => {
+    }).then(res => {
       alert(JSON.stringify(res.data))
-    }).catch((err) => {
+    }).catch(err => {
       alert(err);
     })
   }
 
   return (
     <div>
-      <FormControl className="mb-3" value={imageUrl} placeholder="Image URL" aria-label="Image URL" onChange={handleChangeImageUrl}/>
+      <FormControl className="mb-3"
+      value={imageUrl}
+      placeholder="Image URL"
+      aria-label="Image URL"
+      onChange={handleChangeImageUrl} />
       <Button variant="primary" onClick={predictImage}>
         Submit
       </Button>
       </div>
   )
-};
+}
