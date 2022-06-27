@@ -25,7 +25,7 @@ export default function Output(props) {
         <Col>
         <Table hover>
             <thead>
-                <tr style={{backgroundColor: '#FFCDB2'}}>
+                <tr style={{backgroundColor: '#FCEADE'}}>
                     <th>#</th>
                     <th>Dish/Ingredients</th>
                     <th>Accuracy</th>
@@ -35,7 +35,7 @@ export default function Output(props) {
             <tbody>
                 {output.map((obj, idx) => {
                     // return a row containing cells
-                    return <tr style={{backgroundColor: '#F3FFE1'}}> 
+                    return <tr style={{backgroundColor: '#ECFEE8'}}> 
                         <td>{idx + 1}</td>
                         <td>{obj.name}</td>
                         <td>{obj.value}</td>
