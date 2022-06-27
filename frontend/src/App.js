@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Container, Stack, Navbar } from 'react-bootstrap';
+import magnify from './magnify.png';
 
 import SearchImage from './SearchImage';
 import Output from './Output';
@@ -11,10 +12,15 @@ const [imageToPredict, setImageToPredict] = useState("");
 
   return (
     <div>
-      <Navbar className='py-5 text-center' style={{backgroundColor: '#70A37F'}} navbarscroll='true' 
-      >
+      <Navbar className='py-5 text-center'
+        style={{backgroundColor: '#70A37F'}} 
+        navbarscroll='true'>
         <Container className="nav justify-content-center">
-        <Navbar.Brand className='text-light display' href="/"><h4>INGREDIENT INSPECTOR</h4></Navbar.Brand>
+          <Navbar.Brand className='text-light display'
+            href="/">
+            <h4>INGREDIENT INSPECTOR</h4>
+            <img src={magnify} alt=""/>
+          </Navbar.Brand>
         </Container>
       </Navbar>
       <Container className='border border-light border-5 rounded'>
