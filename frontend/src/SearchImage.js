@@ -28,12 +28,12 @@ export default function Search(props) {
 
   return (
     <div>
-      <FormControl className="mb-3"
+      <FormControl className="mb-3 bg-light text-dark"
       value={imageUrl}
-      placeholder="Show us what you're craving here! Paste an image URL"
+      placeholder="Paste food image url here"
       aria-label="Image URL"
       onChange={handleChangeImageUrl} />
-      <Button variant="primary" onClick={predictImage}>
+      <Button style={{backgroundColor: '#439A86'}} onClick={predictImage}>
         Submit
       </Button>
       </div>

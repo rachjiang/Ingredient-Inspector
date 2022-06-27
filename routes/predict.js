@@ -1,5 +1,9 @@
 const express = require('express');
+const multer = require('multer');
+const path = require('path');
 const router = express.Router();
+
+// Multer is a middleware that adds a body object and a file or files object to the request object. The body object contains the values of the text fields of the form, the file or files object contains the files uploaded via the form
 
 const dotenv = require('dotenv');
  // This sets up our environment variables by using the .env file
@@ -13,6 +17,35 @@ const stub = ClarifaiStub.grpc();
 const metadata = new grpc.Metadata();
 
 metadata.set("authorization", `Key ${process.env.CLARIFAI_KEY}`);
+
+function checkFileType(file, cb) {
+    const filetypes = /jpeg|jpg|png/;
+    // check ext
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    // check mimetype
+    const mimetype = filetypes.test(file.mimetype);
+    // To reject this file pass `false`, like so:   
+    //    cb(null, false);
+    // To accept the file pass `true`, like so:   
+    //    cb(null, true);   
+    // You can always pass an error if something goes wrong:   
+    //    cb(new Error('I don\'t have a clue!')); 
+    if (mimetype && extname) {
+        return cb(null, true);
+    } else {
+        cb('Error: Images only!');
+    }
+}
+
+// multer accepts options, see docs
+// each file submitted to form contains many properties, such as field name, originalname(name of file on user's computer), mimetype(type of file) and  more. See https://afteracademy.com/blog/file-upload-with-multer-in-nodejs-and-express on how to write a fileFilter
+const upload = multer({ 
+    storage: multer.memoryStorage({}),
+    limits: { fileSize: 2000000 }, // in bytes === 2MB
+    fileFilter: function (_req, file, cb) {
+        checkFileType(file, cb);
+    }
+ });
 
 // npm's clarifai set up instructions provides the code to predict concepts in an image. We'll place this code inside predictImage()
 function predictImage(inputs) {
@@ -56,7 +89,7 @@ function predictImage(inputs) {
 }
 
 // We imported express at the start of file so that we could write this route to send the results to client side
-router.post('/', async function (req, res, next) {
+router.post('/', async function (req, res) {
     try {
         // when a user submits an image, it's stores in our request body. we want to destructure it and store it in our inputs array
         const { imageUrl } = req.body;
@@ -79,6 +112,30 @@ router.post('/', async function (req, res, next) {
         return res.status(400).send({
             error: err
         })
+    }
+})
+
+// upload image request
+router.post('/upload', upload.single('file'), async function (req, res) {
+    try {
+        const inputs = [
+            {
+                data: {
+                    image: {
+                        base64: req.file.buffer // buffer is included with file as a prop when passed through the multer middleware
+                    }
+                }
+            }
+        ]
+        const results = await predictImage(inputs);
+        return res.send({
+            results
+        })
+    }
+    catch(err) {
+        res.status(400).send({
+            error: err
+        });
     }
 })
 
