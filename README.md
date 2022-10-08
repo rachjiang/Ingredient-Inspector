@@ -1,4 +1,4 @@
-# Ingredient-Inspector
+# Ingredient Inspector
 
 Ingredient Inspector is the foodie's version of Shazam! 
 
