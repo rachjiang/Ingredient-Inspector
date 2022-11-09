@@ -8,7 +8,7 @@ Similar to how Shazam detects songs that we hear in passing, Ingredient Inspecto
 
 This is made possible through visual-recognition AI provdided by Clarifai's machine learning API.
 
-Currently, the food-recognition model used is mostly accurate with well-known dishes and requires some traning to expand its palate.
+Currently, the food-recognition model used is mostly accurate with well-known dishes and requires some training to expand its palate.
 
 <img width="1271" alt="Screen Shot 2022-10-06 at 12 53 42 AM" src="https://user-images.githubusercontent.com/96898287/194217619-5e2819b1-7b65-4c1d-b784-db6cd8b3d37a.png">
 
