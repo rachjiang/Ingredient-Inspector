@@ -4,9 +4,9 @@ Ingredient Inspector is the foodie's version of Shazam!
 
 This project was inspired by the desire to know what certain food ingredients are called when seeing them in passing.
 
-Similar to how Shazam detects songs that we hear in passing, Ingredient Inspector accepts food-related image URLs and lists out the name of the dish, and/or ingredients with a probability of accuracy. 
+Similar to how Shazam detects songs that we hear in passing, Ingredient Inspector accepts food-related image URLs and lists out the name of the dish, and/or ingredients with an accuracy rate. 
 
-This is made possible through visual-recognition AI provdided by Clarifai's machine learning API.
+This is made possible through a visual-recognition AI model provided by Clarifai's machine learning API.
 
 Currently, the food-recognition model used is mostly accurate with well-known dishes and requires some training to expand its palate.
 
