@@ -16,9 +16,9 @@ const [imageToPredict, setImageToPredict] = useState("");
         <Navbar className='py-5 text-center'
           navbarscroll='true'>
           <Container className="nav justify-content-center">
-            <Navbar.Brand className='text-dark display'
+            <Navbar.Brand
               href="/">
-              <h4>INGREDIENT INSPECTOR</h4>
+              <h1 className='display-3 title'>INGREDIENT INSPECTOR</h1>
               <img src={magnify} alt=""/>
             </Navbar.Brand>
           </Container>
